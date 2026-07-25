@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokédex Linktree - Edición Gia</title>
+
+    <!-- Google Fonts Retro & Pixel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500;600;700&family=Press+Start+2P&family=VT323&display=swap"
+        rel="stylesheet">
+
+    <!-- Hoja de Estilos Externa -->
+    <link rel="stylesheet" href="assets/styles/style.css">
+</head>
+
+<body>
+
+    <!-- Consola Pokédex Principal -->
+    <div class="pokedex-shell">
+
+        <!-- Barra Superior -->
+        <div class="top-bar">
+            <div class="top-left-group">
+                <div class="camera-gem" id="cameraGem" title="¡Toca para sonido retro!"></div>
+                <div class="status-lights">
+                    <div class="light-dot dot-pink"></div>
+                    <div class="light-dot dot-yellow"></div>
+                    <div class="light-dot dot-green"></div>
+                </div>
+            </div>
+            <div class="pokedex-title">
+                POKÉDEX <span class="heart">♡</span>
+            </div>
+        </div>
+
+        <!-- Marco SVG de Pantalla con MATEMÁTICA PARALELA PERFECTA Y BANDA DE 12px EN TODOS LOS LADOS -->
+        <div class="screen-frame-wrapper">
+
+            <svg class="frame-svg-bg" viewBox="0 0 360 640" preserveAspectRatio="none">
+                <defs>
+                    <!-- ClipPath exacto de la pantalla interior -->
+                    <clipPath id="innerScreenClip">
+                        <path d="
+                            M 32,20 
+                            H 190 
+                            L 218,38 
+                            H 328 
+                            A 12,12 0 0 1 340,50 
+                            V 608 
+                            A 12,12 0 0 1 328,620 
+                            H 32 
+                            A 12,12 0 0 1 20,608 
+                            V 32 
+                            A 12,12 0 0 1 32,20 Z" />
+                    </clipPath>
+                </defs>
+
+                <!-- 1. Borde Exterior del Bisel (Línea de trazo vectorial 3.5px constante) -->
+                <path d="
+                    M 24,8 
+                    H 196 
+                    L 224,26 
+                    H 336 
+                    A 16,16 0 0 1 352,42 
+                    V 616 
+                    A 16,16 0 0 1 336,632 
+                    H 24 
+                    A 16,16 0 0 1 8,616 
+                    V 24 
+                    A 16,16 0 0 1 24,8 Z" fill="#f79ebb" stroke="#3b1625" stroke-width="3.5"
+                    vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke-linecap="round" />
+
+                <!-- 2. Borde Interior de la Pantalla (Línea de trazo vectorial 3.5px constante, Offset exacto 12px) -->
+                <path d="
+                    M 32,20 
+                    H 190 
+                    L 218,38 
+                    H 328 
+                    A 12,12 0 0 1 340,50 
+                    V 608 
+                    A 12,12 0 0 1 328,620 
+                    H 32 
+                    A 12,12 0 0 1 20,608 
+                    V 32 
+                    A 12,12 0 0 1 32,20 Z" fill="#ffebf3" stroke="#3b1625" stroke-width="3.5"
+                    vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke-linecap="round" />
+
+                <!-- 3. Imagen de Fondo (assets/images/background.png) RECORTADA NATIVAMENTE en SVG en las 4 esquinas -->
+                <g clip-path="url(#innerScreenClip)">
+                    <image href="assets/images/background.png" x="20" y="20" width="320" height="600"
+                        preserveAspectRatio="xMidYMid slice" opacity="0.9" />
+                </g>
+            </svg>
+
+            <!-- Contenido interactivo transparente sobre la pantalla SVG -->
+            <div class="screen-content">
+                <!-- Agua de Pokeballs -->
+                <div class="bg-pokeball-pattern"></div>
+
+                <!-- Sparkles -->
+                <span class="sparkle sp1">✨</span>
+                <span class="sparkle sp2">✨</span>
+                <span class="sparkle sp3">✨</span>
+                <span class="sparkle sp4">✨</span>
+
+                <!-- Titulo GIA con corazones -->
+                <h1 class="screen-header-title">
+                    <span class="big-heart">💖</span> gia <span class="big-heart">💖</span>
+                </h1>
+
+                <!-- Badge Pill (Rosita - Entrenadora Tipo Hada) -->
+                <div class="profile-pill">
+                    <!--<div class="pill-row-top">
+                        <div class="mini-pokeball"></div>
+                        <span class="profile-name">Rosita</span>
+                        <div class="mini-pokeball"></div>
+                    </div>-->
+                    <div class="pill-row-sub">✨ Entrenadora - Tipo Hada ✨</div>
+                </div>
+
+                <!-- Lista de Links -->
+                <div class="links-container">
+                    <a href="https://www.tiktok.com/@gia_coronado" target="_blank" rel="noopener" class="link-btn">
+                        <div class="link-left">
+                            <div class="btn-pokeball-icon"></div>
+                            <!-- TikTok SVG -->
+                            <svg class="social-svg-icon" viewBox="0 0 24 24">
+                                <path
+                                    d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .58.04.86.12V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.86 4.47V13a8.28 8.28 0 0 0 5.73 2.26v-3.71a4.84 4.84 0 0 1-3.77-1.46v-3.4z" />
+                            </svg>
+                            <span class="link-title">TIKTOK</span>
+                        </div>
+                        <span class="btn-heart">💖</span>
+                    </a>
+
+                    <a href="https://www.instagram.com/giia_coronado2" target="_blank" rel="noopener" class="link-btn">
+                        <div class="link-left">
+                            <div class="btn-pokeball-icon"></div>
+                            <!-- Instagram SVG -->
+                            <svg class="social-svg-icon" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                            <span class="link-title">INSTAGRAM</span>
+                        </div>
+                        <span class="btn-heart">💖</span>
+                    </a>
+
+                    <a href="https://whatsapp.com/channel/0029Vb97fnJ8V0tiitLqxH2X" target="_blank" rel="noopener" class="link-btn">
+                        <div class="link-left">
+                            <div class="btn-pokeball-icon"></div>
+                            <!-- WhatsApp SVG -->
+                            <svg class="social-svg-icon" viewBox="0 0 24 24">
+                                <path
+                                    d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
+                            </svg>
+                            <span class="link-title">WHATSAPP</span>
+                        </div>
+                        <span class="btn-heart">💖</span>
+                    </a>
+
+                    <a href="javascript:void(0)" class="link-btn disabled">
+                        <div class="link-left">
+                            <div class="btn-pokeball-icon"></div>
+                            <!-- YouTube SVG -->
+                            <svg class="social-svg-icon" viewBox="0 0 24 24">
+                                <path
+                                    d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                            </svg>
+                            <span class="link-title">YOUTUBE</span>
+                        </div>
+                        <span class="btn-heart">💖</span>
+                    </a>
+
+                    <a href="javascript:void(0)" class="link-btn disabled">
+                        <div class="link-left">
+                            <div class="btn-pokeball-icon"></div>
+                            <!-- Twitch SVG -->
+                            <svg class="social-svg-icon" viewBox="0 0 24 24">
+                                <path
+                                    d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z" />
+                            </svg>
+                            <span class="link-title">TWITCH</span>
+                        </div>
+                        <span class="btn-heart">💖</span>
+                    </a>
+                </div>
+
+                <!-- Pokémon Sprites en pantalla -->
+                <!-- Top Left: Sylveon (#700) -->
+                <img src="assets/images/silveon1.png"
+                    alt="Sylveon" class="pkmn-sprite pkmn-top-left" data-id="700"
+                    title="Sylveon - ¡Haz clic para ver datos!">
+
+                <!-- Top Right: Diancie (#719) -->
+                <img src="assets/images/diance.png"
+                    alt="Diancie" class="pkmn-sprite pkmn-top-right" data-id="719"
+                    title="Diancie - ¡Haz clic para ver datos!">
+
+                <!-- Mid Left: Alcremie (#869) -->
+                <img src="assets/images/alcremie.png"
+                    alt="Alcremie" class="pkmn-sprite pkmn-mid-left" data-id="869"
+                    title="Alcremie - ¡Haz clic para ver datos!">
+
+                <!-- Mid Right: Tapu Lele (#786) -->
+                <img src="assets/images/tapulele.png"
+                    alt="Tapu Lele" class="pkmn-sprite pkmn-mid-right" data-id="786"
+                    title="Tapu Lele - ¡Haz clic para ver datos!">
+
+                <!-- Bottom Left: Sylveon Durmiendo (#700) -->
+                <img src="assets/images/silveon2.png"
+                    alt="Sylveon Animation" class="pkmn-sprite pkmn-bottom-center" data-id="700"
+                    title="Sylveon - ¡Haz clic para ver datos!">
+
+                <!-- Entrenadora Gia (assets/images/gia_pokemon.webp) -->
+                <img src="assets/images/gia_pokemon.webp" alt="Entrenadora Gia" class="trainer-girl-sprite"
+                    title="¡Entrenadora Gia!">
+            </div>
+        </div>
+
+        <!-- CONTROLES INFERIORES -->
+        <div class="bottom-controls-container">
+
+            <!-- D-Pad Cruceta Negra con Flechas -->
+            <div class="dpad-cross" id="dpadCross">
+                <div class="dpad-part dpad-vertical"></div>
+                <div class="dpad-part dpad-horizontal"></div>
+                <div class="dpad-core"></div>
+                <span class="arrow-up">▲</span>
+                <span class="arrow-down">▼</span>
+                <span class="arrow-left">◀</span>
+                <span class="arrow-right">▶</span>
+            </div>
+
+            <!-- Centro: Corazón Blanco + Altavoz 3 Líneas -->
+            <div class="bottom-center-status">
+                <span class="heart-badge-white">♥</span>
+                <div class="speaker-lines-group">
+                    <div class="speaker-line-bar"></div>
+                    <div class="speaker-line-bar"></div>
+                    <div class="speaker-line-bar"></div>
+                </div>
+            </div>
+
+            <!-- Botón Esfera Rosa 3D Derecha -->
+            <div class="big-sphere-button" id="bigSphereBtn" title="¡Efecto de sonido retro!"></div>
+
+        </div>
+
+        <!-- Ranura central inferior exterior -->
+        <div class="bottom-hinge-slot"></div>
+
+    </div>
+
+    <!-- Modal Ficha Pokémon -->
+    <div class="modal-overlay" id="pkmnModal">
+        <div class="pokedex-card-modal">
+            <button class="close-modal-btn" id="closeModal">&times;</button>
+            <img src="" id="modalImg" alt="Pokemon" class="modal-pkmn-image">
+            <h2 class="modal-pkmn-name" id="modalName">CARGANDO...</h2>
+            <div class="modal-pkmn-types" id="modalTypes"></div>
+
+            <div class="modal-stats">
+                <div class="stat-row">
+                    <span>HP</span>
+                    <div class="stat-bar-bg">
+                        <div class="stat-bar-fill" id="barHp"></div>
+                    </div>
+                </div>
+                <div class="stat-row">
+                    <span>Ataque</span>
+                    <div class="stat-bar-bg">
+                        <div class="stat-bar-fill" id="barAtk"></div>
+                    </div>
+                </div>
+                <div class="stat-row">
+                    <span>Defensa</span>
+                    <div class="stat-bar-bg">
+                        <div class="stat-bar-fill" id="barDef"></div>
+                    </div>
+                </div>
+                <div class="stat-row">
+                    <span>Velocidad</span>
+                    <div class="stat-bar-bg">
+                        <div class="stat-bar-fill" id="barSpd"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast de Sonido -->
+    <div class="toast-sound" id="toastSound">🔊 Reproduciendo sonido...</div>
+
+    <!-- Créditos a un lado de la página (por defecto contraído) -->
+    <div class="side-credits-container collapsed" id="sideCredits">
+        <button class="credits-toggle-btn" id="creditsToggle" title="Ver Créditos">
+            <span class="credit-heart">💖</span>
+            <span class="btn-text">Créditos</span>
+        </button>
+        <div class="side-credits-card">
+            <div class="credits-card-header">
+                <span>✨ CRÉDITOS ✨</span>
+            </div>
+            <div class="credits-card-body">
+                <div class="credit-item">
+                    <span class="credit-label">👑 Creador & Dev:</span>
+                    <a href="https://github.com/eme22" target="_blank" rel="noopener" class="credit-link">eme22 (GitHub)</a>
+                </div>
+                <div class="credit-item">
+                    <span class="credit-label">🤖 Asistente IA:</span>
+                    <span class="credit-val">Antigravity (Google DeepMind)</span>
+                </div>
+                <div class="credit-item">
+                    <span class="credit-label">🎮 Sprites & Datos:</span>
+                    <a href="https://pokeapi.co/" target="_blank" rel="noopener" class="credit-link">PokéAPI</a>
+                </div>
+                <div class="credit-item">
+                    <span class="credit-label">🔤 Tipografías:</span>
+                    <span class="credit-val">Google Fonts</span>
+                </div>
+                <div class="credit-item">
+                    <span class="credit-label">🔊 Efectos de Audio:</span>
+                    <span class="credit-val">Web Audio API</span>
+                </div>
+                <div class="credit-item">
+                    <span class="credit-label">💻 Stack Web:</span>
+                    <span class="credit-val">HTML5 / CSS3 / JS</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lógica JavaScript -->
+    <script>
+        // Web Audio API para sonidos retro de consola
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playRetroBeep(freq = 440, type = 'sine', duration = 0.1) {
+            try {
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch (e) {
+                console.log(e);
+            }
+        }
+
+        const modal = document.getElementById('pkmnModal');
+        const closeModalBtn = document.getElementById('closeModal');
+        const modalImg = document.getElementById('modalImg');
+        const modalName = document.getElementById('modalName');
+        const modalTypes = document.getElementById('modalTypes');
+        const barHp = document.getElementById('barHp');
+        const barAtk = document.getElementById('barAtk');
+        const barDef = document.getElementById('barDef');
+        const barSpd = document.getElementById('barSpd');
+        const toastSound = document.getElementById('toastSound');
+
+        function showToast(msg) {
+            toastSound.textContent = msg;
+            toastSound.classList.add('show');
+            setTimeout(() => toastSound.classList.remove('show'), 2000);
+        }
+
+        // Sonido Cry original
+        function playPokemonCry(pokemonId) {
+            const cryUrl = `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${pokemonId}.ogg`;
+            const audio = new Audio(cryUrl);
+            audio.volume = 0.5;
+            audio.play().then(() => {
+                showToast("🔊 ¡Sonido Pokémon!");
+            }).catch(err => {
+                playRetroBeep(600, 'square', 0.2);
+            });
+        }
+
+        // Ficha modal
+        async function fetchAndShowPokemonData(idOrName) {
+            playRetroBeep(520, 'triangle', 0.15);
+            modalName.textContent = "CARGANDO...";
+            modalTypes.innerHTML = "";
+            const localImages = {
+                '700': 'assets/images/silveon1.png',
+                '719': 'assets/images/diance.png',
+                '869': 'assets/images/alcremie.png',
+                '786': 'assets/images/tapulele.png'
+            };
+            modalImg.src = localImages[idOrName] || `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${idOrName}.png`;
+            modal.classList.add('active');
+
+            playPokemonCry(idOrName);
+
+            try {
+                const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${idOrName}`);
+                const data = await response.json();
+
+                modalName.textContent = `#${data.id} ${data.name.toUpperCase()}`;
+
+                modalTypes.innerHTML = data.types.map(t =>
+                    `<span class="type-badge">${t.type.name}</span>`
+                ).join('');
+
+                const statsMap = {};
+                data.stats.forEach(s => statsMap[s.stat.name] = s.base_stat);
+
+                barHp.style.width = Math.min(100, (statsMap['hp'] || 50) / 1.5) + '%';
+                barAtk.style.width = Math.min(100, (statsMap['attack'] || 50) / 1.5) + '%';
+                barDef.style.width = Math.min(100, (statsMap['defense'] || 50) / 1.5) + '%';
+                barSpd.style.width = Math.min(100, (statsMap['speed'] || 50) / 1.5) + '%';
+
+            } catch (err) {
+                modalName.textContent = "POKÉMON GIA";
+                modalTypes.innerHTML = `<span class="type-badge">hada</span>`;
+            }
+        }
+
+        document.querySelectorAll('.pkmn-sprite').forEach(sprite => {
+            sprite.addEventListener('click', () => {
+                const pkmnId = sprite.getAttribute('data-id');
+                fetchAndShowPokemonData(pkmnId);
+            });
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            playRetroBeep(300, 'sine', 0.1);
+            modal.classList.remove('active');
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+            }
+        });
+
+        document.getElementById('cameraGem').addEventListener('click', () => {
+            playRetroBeep(880, 'sine', 0.2);
+            showToast("✨ Pokédex Gia activada ✨");
+        });
+
+        document.getElementById('bigSphereBtn').addEventListener('click', () => {
+            playRetroBeep(650, 'square', 0.15);
+            const pinkIds = [700, 719, 869, 786, 39, 35, 300, 531];
+            const randomId = pinkIds[Math.floor(Math.random() * pinkIds.length)];
+            playPokemonCry(randomId);
+        });
+
+        document.getElementById('dpadCross').addEventListener('click', () => {
+            playRetroBeep(350 + Math.random() * 200, 'square', 0.08);
+        });
+
+        document.querySelectorAll('.link-btn').forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                playRetroBeep(580, 'sine', 0.05);
+            });
+        });
+
+        // Toggle Créditos
+        const sideCredits = document.getElementById('sideCredits');
+        document.getElementById('creditsToggle').addEventListener('click', () => {
+            playRetroBeep(480, 'sine', 0.1);
+            sideCredits.classList.toggle('collapsed');
+        });
+    </script>
+</body>
+
+</html>

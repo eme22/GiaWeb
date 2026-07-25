@@ -1,0 +1,979 @@
+:root {
+    --dex-bg: #ffa0be;
+    --dex-shadow: #e06894;
+    --dex-border: #3b1625;
+    --screen-bg: #ffebf3;
+    --btn-pink: #ffcadc;
+    --btn-border: #e65c8a;
+    --accent-heart: #ff4d88;
+}
+
+* {
+    box-sizing: border-box;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+body {
+    background: #fde8f0;
+    background-image:
+        radial-gradient(#ffaec7 1.5px, transparent 1.5px),
+        radial-gradient(#ffaec7 1.5px, #fde8f0 1.5px);
+    background-size: 26px 26px;
+    background-position: 0 0, 13px 13px;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Pixelify Sans', 'Press Start 2P', cursive, sans-serif;
+    color: var(--dex-border);
+}
+
+/* Consola Pokédex exterior alta */
+.pokedex-shell {
+    background-color: var(--dex-bg);
+    border: 4.5px solid var(--dex-border);
+    border-radius: 34px 34px 42px 42px;
+    width: 100%;
+    max-width: 390px;
+    padding: 16px 14px 16px 14px;
+    box-shadow:
+        inset -6px -8px 0px var(--dex-shadow),
+        inset 6px 6px 0px #ffc8db,
+        0px 16px 35px rgba(90, 20, 45, 0.3);
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Barra Superior */
+.top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 0 4px;
+}
+
+.top-left-group {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+/* Lente principal estilo Pokéball Gema */
+.camera-gem {
+    width: 46px;
+    height: 46px;
+    background: linear-gradient(180deg, #ff4d79 44%, #3b1625 44%, #3b1625 56%, #ffffff 56%);
+    border: 3.5px solid var(--dex-border);
+    border-radius: 50%;
+    box-shadow:
+        inset 0 0 0 2px rgba(255, 255, 255, 0.9),
+        0 0 0 2px #ffffff,
+        0 0 0 5px var(--dex-border);
+    cursor: pointer;
+    transition: transform 0.15s ease;
+    position: relative;
+}
+
+.camera-gem::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 13px;
+    height: 13px;
+    background: #ffffff;
+    border: 2.5px solid var(--dex-border);
+    border-radius: 50%;
+}
+
+.camera-gem:active {
+    transform: scale(0.92);
+}
+
+/* Luces indicadoras 0 0 0 */
+.status-lights {
+    display: flex;
+    gap: 6px;
+}
+
+.light-dot {
+    width: 13px;
+    height: 13px;
+    border: 2.5px solid var(--dex-border);
+    border-radius: 50%;
+    box-shadow: inset -1px -1px 0px rgba(0, 0, 0, 0.25);
+}
+
+.dot-pink {
+    background-color: #ff5c8d;
+}
+
+.dot-yellow {
+    background-color: #ffe066;
+}
+
+.dot-green {
+    background-color: #79f2c0;
+}
+
+.pokedex-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 11px;
+    color: var(--dex-border);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    letter-spacing: 0.5px;
+}
+
+.pokedex-title .heart {
+    color: var(--accent-heart);
+    font-size: 13px;
+    animation: pulse-heart 1.5s infinite alternate;
+}
+
+@keyframes pulse-heart {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.25);
+    }
+}
+
+/* MARCO SVG DE LA PANTALLA CON DOBLE BORDE PARALELO 100% SIMÉTRICO */
+.screen-frame-wrapper {
+    position: relative;
+    width: 100%;
+    height: 640px;
+    margin-bottom: 12px;
+}
+
+.frame-svg-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    filter: drop-shadow(0 2px 0px rgba(59, 22, 37, 0.1));
+}
+
+/* Contenido recortado dentro de la pantalla */
+.screen-content {
+    position: absolute;
+    top: 40px;
+    left: 20px;
+    right: 20px;
+    bottom: 30px;
+    z-index: 2;
+    padding: 10px 8px 6px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: transparent;
+    overflow: hidden;
+}
+
+/* Agua de Pokeballs de fondo */
+.bg-pokeball-pattern {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.08;
+    z-index: 2;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%233b1625" stroke-width="8"/><line x1="5" y1="50" x2="95" y2="50" stroke="%233b1625" stroke-width="8"/><circle cx="50" cy="50" r="18" fill="%23ffebf3" stroke="%233b1625" stroke-width="8"/><circle cx="50" cy="50" r="8" fill="%233b1625"/></svg>');
+    background-size: 75px 75px;
+}
+
+/* Sparkles Pixel */
+.sparkle {
+    position: absolute;
+    color: #ff85b3;
+    font-size: 15px;
+    pointer-events: none;
+    z-index: 2;
+    animation: float-sparkle 3s infinite ease-in-out;
+}
+
+.sp1 {
+    top: 4%;
+    left: 6%;
+    animation-delay: 0s;
+}
+
+.sp2 {
+    top: 12%;
+    right: 6%;
+    animation-delay: 0.8s;
+}
+
+.sp3 {
+    bottom: 25%;
+    left: 6%;
+    animation-delay: 1.5s;
+}
+
+.sp4 {
+    bottom: 14%;
+    right: 6%;
+    animation-delay: 2.2s;
+}
+
+@keyframes float-sparkle {
+
+    0%,
+    100% {
+        transform: translateY(0) scale(0.9);
+        opacity: 0.6;
+    }
+
+    50% {
+        transform: translateY(-4px) scale(1.1);
+        opacity: 1;
+    }
+}
+
+/* Titulo GIA con corazones */
+.screen-header-title {
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 26px;
+    color: #ffffff;
+    text-shadow:
+        -3px -3px 0 var(--dex-border),
+        3px -3px 0 var(--dex-border),
+        -3px 3px 0 var(--dex-border),
+        3px 3px 0 var(--dex-border),
+        0px 5px 0px #ff6699;
+    margin: 0px 0 4px 0;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+    z-index: 3;
+}
+
+.screen-header-title .big-heart {
+    color: #ff3377;
+    font-size: 20px;
+    text-shadow:
+        -2px -2px 0 var(--dex-border),
+        2px -2px 0 var(--dex-border),
+        -2px 2px 0 var(--dex-border),
+        2px 2px 0 var(--dex-border);
+    animation: pulse-heart 1.5s infinite alternate;
+}
+
+/* Badge Pill Gia (Rosita - Entrenadora Tipo Hada) */
+.profile-pill {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    background: rgba(255, 230, 240, 0.95);
+    border: 2.5px solid var(--dex-border);
+    border-radius: 18px;
+    padding: 3px 14px;
+    width: fit-content;
+    margin: 0 auto 6px auto;
+    box-shadow: 0 2.5px 0 rgba(59, 22, 37, 0.15);
+    position: relative;
+    z-index: 3;
+}
+
+.pill-row-top {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.mini-pokeball {
+    width: 13px;
+    height: 13px;
+    background: linear-gradient(180deg, #ff4d79 50%, #ffffff 50%);
+    border: 1.5px solid var(--dex-border);
+    border-radius: 50%;
+    position: relative;
+    display: inline-block;
+}
+
+.mini-pokeball::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 3.5px;
+    height: 3.5px;
+    background: #ffffff;
+    border: 1px solid var(--dex-border);
+    border-radius: 50%;
+}
+
+.profile-name {
+    font-family: 'Pixelify Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--dex-border);
+    letter-spacing: 0.5px;
+}
+
+.pill-row-sub {
+    font-family: 'Pixelify Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: #cc2960;
+}
+
+/* Lista de Links (Comienza debajo de Sylveon y Diancie) */
+.links-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+    max-width: 215px;
+    margin: 130px auto 0 auto;
+    position: relative;
+    z-index: 3;
+}
+
+.link-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgba(255, 202, 220, 0.96);
+    border: 2.5px solid var(--dex-border);
+    border-radius: 20px;
+    padding: 4px 12px;
+    text-decoration: none;
+    color: var(--dex-border);
+    font-weight: 700;
+    font-size: 13px;
+    box-shadow: 0 3px 0px var(--dex-border);
+    transition: all 0.15s ease;
+}
+
+.link-btn:hover {
+    background-color: #ffaec7;
+    transform: translateY(-2px);
+    box-shadow: 0 4.5px 0px var(--dex-border);
+}
+
+.link-btn:active {
+    transform: translateY(1.5px);
+    box-shadow: 0 1px 0px var(--dex-border);
+}
+
+.link-btn.disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    background-color: rgba(235, 195, 210, 0.7);
+    box-shadow: 0 2px 0px var(--dex-border);
+}
+
+.link-btn.disabled:hover {
+    transform: none;
+    background-color: rgba(235, 195, 210, 0.7);
+    box-shadow: 0 2px 0px var(--dex-border);
+}
+
+.link-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.social-svg-icon {
+    width: 15px;
+    height: 15px;
+    fill: currentColor;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.btn-pokeball-icon {
+    width: 16px;
+    height: 16px;
+    background: linear-gradient(180deg, #ff4d79 50%, #ffffff 50%);
+    border: 1.8px solid var(--dex-border);
+    border-radius: 50%;
+    position: relative;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.link-btn:hover .btn-pokeball-icon {
+    transform: rotate(180deg);
+}
+
+.btn-pokeball-icon::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 4px;
+    height: 4px;
+    background: #ffffff;
+    border: 1.2px solid var(--dex-border);
+    border-radius: 50%;
+}
+
+.link-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 9px;
+    letter-spacing: 0.5px;
+}
+
+.btn-heart {
+    color: var(--accent-heart);
+    font-size: 12px;
+}
+
+/* Pokémon Sprites */
+.pkmn-sprite {
+    position: absolute;
+    z-index: 4;
+    cursor: pointer;
+    filter: drop-shadow(2px 3.5px 0px rgba(59, 22, 37, 0.2));
+    transition: transform 0.2s ease;
+    object-fit: contain;
+    object-position: center;
+}
+
+.pkmn-sprite:hover {
+    transform: scale(1.12) translateY(-2px);
+}
+
+/* Top Left: Sylveon (#700) */
+.pkmn-top-left {
+    top: 100px;
+    left: 4px;
+    width: 82px;
+    height: auto;
+    max-height: 82px;
+}
+
+/* Top Right: Diancie (#719) */
+.pkmn-top-right {
+    top: 85px;
+    right: 4px;
+    width: 76px;
+    height: auto;
+    max-height: 76px;
+}
+
+/* Mid Left: Alcremie (#869) */
+.pkmn-mid-left {
+    top: 305px;
+    left: 4px;
+    width: 78px;
+    height: auto;
+    max-height: 78px;
+}
+
+/* Mid Right: Tapu Lele (#786) */
+.pkmn-mid-right {
+    top: 285px;
+    right: 4px;
+    width: 74px;
+    height: auto;
+    max-height: 74px;
+}
+
+/* Bottom Left: Sylveon Durmiendo (#700) */
+.pkmn-bottom-center {
+    bottom: 8px;
+    left: 4px;
+    transform: none;
+    width: 85px;
+    height: auto;
+    max-height: 75px;
+    z-index: 5;
+}
+
+.pkmn-bottom-center:hover {
+    transform: scale(1.1);
+}
+
+/* Entrenadora Gia sitting at bottom right */
+.trainer-girl-sprite {
+    position: absolute;
+    bottom: -4px;
+    right: -4px;
+    width: 145px;
+    height: auto;
+    max-height: 155px;
+    object-fit: contain;
+    z-index: 4;
+    pointer-events: auto;
+    cursor: pointer;
+    filter: drop-shadow(2px 3.5px 0px rgba(59, 22, 37, 0.25));
+    transition: transform 0.2s ease;
+}
+
+.trainer-girl-sprite:hover {
+    transform: scale(1.06) translateY(-2px);
+}
+
+/* Controles Inferiores */
+.bottom-controls-container {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 4px 6px 0px 6px;
+    position: relative;
+}
+
+/* D-PAD (Cruceta de mando negra) */
+.dpad-cross {
+    width: 64px;
+    height: 64px;
+    position: relative;
+    filter: drop-shadow(0 3px 0px var(--dex-border));
+}
+
+.dpad-part {
+    background-color: #383838;
+    border: 3px solid var(--dex-border);
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #1a1a1a;
+    font-size: 10px;
+    transition: background 0.1s;
+}
+
+.dpad-part:hover {
+    background-color: #4a4a4a;
+}
+
+.dpad-part:active {
+    background-color: #222222;
+}
+
+.dpad-vertical {
+    width: 22px;
+    height: 64px;
+    left: 21px;
+    top: 0;
+    border-radius: 6px;
+}
+
+.dpad-horizontal {
+    width: 64px;
+    height: 22px;
+    left: 0;
+    top: 21px;
+    border-radius: 6px;
+}
+
+.dpad-core {
+    width: 20px;
+    height: 20px;
+    left: 22px;
+    top: 22px;
+    background-color: #383838;
+    position: absolute;
+    z-index: 2;
+}
+
+.arrow-up {
+    position: absolute;
+    top: 3px;
+    left: 26px;
+    z-index: 3;
+    color: #222;
+    font-size: 9px;
+    cursor: pointer;
+}
+
+.arrow-down {
+    position: absolute;
+    bottom: 3px;
+    left: 26px;
+    z-index: 3;
+    color: #222;
+    font-size: 9px;
+    cursor: pointer;
+}
+
+.arrow-left {
+    position: absolute;
+    left: 4px;
+    top: 25px;
+    z-index: 3;
+    color: #222;
+    font-size: 9px;
+    cursor: pointer;
+}
+
+.arrow-right {
+    position: absolute;
+    right: 4px;
+    top: 25px;
+    z-index: 3;
+    color: #222;
+    font-size: 9px;
+    cursor: pointer;
+}
+
+/* Centro Inferior */
+.bottom-center-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.heart-badge-white {
+    color: #ffffff;
+    font-size: 18px;
+    text-shadow:
+        -1.5px -1.5px 0 var(--dex-border),
+        1.5px -1.5px 0 var(--dex-border),
+        -1.5px 1.5px 0 var(--dex-border),
+        1.5px 1.5px 0 var(--dex-border);
+}
+
+.speaker-lines-group {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5px;
+}
+
+.speaker-line-bar {
+    width: 26px;
+    height: 3.5px;
+    background-color: #e07599;
+    border: 1px solid var(--dex-border);
+    border-radius: 2px;
+}
+
+/* Botón Esférico 3D */
+.big-sphere-button {
+    width: 54px;
+    height: 54px;
+    background: radial-gradient(circle at 35% 30%, #ffffff 0%, #ff8cb5 35%, #e64d80 75%, #b32454 100%);
+    border: 3.5px solid var(--dex-border);
+    border-radius: 50%;
+    box-shadow: 0 4px 0px var(--dex-border);
+    cursor: pointer;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+    position: relative;
+}
+
+.big-sphere-button:active {
+    transform: translateY(3px) scale(0.95);
+    box-shadow: 0 1px 0px var(--dex-border);
+}
+
+/* Ranura Inferior */
+.bottom-hinge-slot {
+    width: 74px;
+    height: 13px;
+    background-color: var(--dex-bg);
+    border: 3.5px solid var(--dex-border);
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    margin: 0 auto;
+    position: absolute;
+    bottom: -17px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: inset 0 -2px 0px var(--dex-shadow);
+}
+
+/* MODAL POKÉDEX FICHA */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(59, 22, 37, 0.65);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    padding: 20px;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.pokedex-card-modal {
+    background: #ffebf3;
+    border: 4px solid var(--dex-border);
+    border-radius: 22px;
+    width: 100%;
+    max-width: 310px;
+    padding: 16px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    transform: scale(0.85);
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    text-align: center;
+}
+
+.modal-overlay.active .pokedex-card-modal {
+    transform: scale(1);
+}
+
+.close-modal-btn {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    background: #ff5c8d;
+    border: 2px solid var(--dex-border);
+    color: #fff;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-pkmn-image {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    margin: 0 auto;
+    filter: drop-shadow(2px 3px 0px rgba(0, 0, 0, 0.15));
+}
+
+.modal-pkmn-name {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+    color: var(--dex-border);
+    margin: 8px 0 4px 0;
+    text-transform: uppercase;
+}
+
+.modal-pkmn-types {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+.type-badge {
+    background: #ff85b3;
+    color: white;
+    border: 1.5px solid var(--dex-border);
+    border-radius: 10px;
+    padding: 2px 8px;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.modal-stats {
+    background: #ffffff;
+    border: 2px solid var(--dex-border);
+    border-radius: 12px;
+    padding: 10px;
+    font-size: 12px;
+    text-align: left;
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.stat-bar-bg {
+    width: 120px;
+    height: 8px;
+    background: #f0f0f0;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--dex-border);
+}
+
+.stat-bar-fill {
+    height: 100%;
+    background: #ff5c8d;
+    border-radius: 4px;
+    width: 50%;
+}
+
+/* Toast de Sonido */
+.toast-sound {
+    position: fixed;
+    bottom: 20px;
+    background: var(--dex-border);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    z-index: 200;
+}
+
+.toast-sound.show {
+    opacity: 1;
+}
+
+/* Créditos de Tecnologías a un lado de la página */
+.side-credits-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 150;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    font-family: 'Pixelify Sans', cursive;
+}
+
+.credits-toggle-btn {
+    background: #ffebf3;
+    border: 2.5px solid var(--dex-border);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-family: 'Pixelify Sans', cursive;
+    font-size: 11px;
+    font-weight: bold;
+    color: var(--dex-border);
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(59, 22, 37, 0.15), inset 0 0 0 1px #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+}
+
+.credits-toggle-btn:hover {
+    transform: translateY(-2px);
+    background: #ffd6e5;
+    box-shadow: 0 6px 14px rgba(59, 22, 37, 0.25);
+}
+
+.side-credits-card {
+    background: rgba(255, 235, 243, 0.96);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 3px solid var(--dex-border);
+    border-radius: 16px;
+    width: 240px;
+    box-shadow: 0 8px 24px rgba(59, 22, 37, 0.22), inset 0 0 0 1px #ffffff;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.credits-card-header {
+    background: var(--dex-bg);
+    color: var(--dex-border);
+    border-bottom: 2.5px solid var(--dex-border);
+    padding: 8px 10px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 9px;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+.credits-card-body {
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.credit-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-bottom: 1px dashed rgba(59, 22, 37, 0.18);
+    padding-bottom: 6px;
+}
+
+.credit-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.credit-label {
+    font-weight: bold;
+    color: #8c2a52;
+    font-size: 11px;
+}
+
+.credit-val,
+.credit-link {
+    color: var(--dex-border);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.credit-link {
+    color: #e63973;
+    text-decoration: none;
+    transition: color 0.15s;
+}
+
+.credit-link:hover {
+    text-decoration: underline;
+    color: #b8144c;
+}
+
+.side-credits-container.collapsed .side-credits-card {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px) scale(0.95);
+    max-height: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+@media (max-width: 600px) {
+    .side-credits-container {
+        bottom: 12px;
+        right: 12px;
+    }
+
+    .side-credits-card {
+        width: 190px;
+    }
+
+    .credits-card-header {
+        font-size: 8px;
+        padding: 6px;
+    }
+
+    .credit-label {
+        font-size: 10px;
+    }
+
+    .credit-val,
+    .credit-link {
+        font-size: 11px;
+    }
+}
