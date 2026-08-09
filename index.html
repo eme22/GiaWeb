@@ -339,7 +339,14 @@
         async function fetchAndShowPokemonData(idOrName) {
             playRetroBeep(520, 'triangle', 0.15);
             modalName.textContent = "CARGANDO...";
-            modalTypes.innerHTML = "";
+            modalTypes.innerHTML = '<div class="pokedex-loader" style="padding: 10px 0;"><div class="spinner-pokeball"></div></div>';
+            
+            // Reiniciar barras de estadísticas mientras carga
+            barHp.style.width = '0%';
+            barAtk.style.width = '0%';
+            barDef.style.width = '0%';
+            barSpd.style.width = '0%';
+
             const localImages = {
                 '700': 'assets/images/silveon1.png',
                 '719': 'assets/images/diance.png',
@@ -372,8 +379,13 @@
             } catch (err) {
                 modalName.textContent = "POKÉMON GIA";
                 modalTypes.innerHTML = `<span class="type-badge">hada</span>`;
+                barHp.style.width = '60%';
+                barAtk.style.width = '50%';
+                barDef.style.width = '55%';
+                barSpd.style.width = '70%';
             }
         }
+
 
         document.querySelectorAll('.pkmn-sprite').forEach(sprite => {
             sprite.addEventListener('click', () => {
@@ -489,6 +501,16 @@
         }
 
         async function cargarLinksDesdeGoogleSheets() {
+            const container = document.getElementById('linksContainer');
+            if (container) {
+                container.innerHTML = `
+                    <div class="pokedex-loader">
+                        <div class="spinner-pokeball"></div>
+                        <span>CARGANDO...</span>
+                    </div>
+                `;
+            }
+
             if (!SPREADSHEET_ID || SPREADSHEET_ID.trim() === "") {
                 console.log("📌 Google Sheets ID no especificado. Cargando enlaces locales de respaldo...");
                 renderLinksContainer(DEFAULT_LINKS);
@@ -510,6 +532,7 @@
                 renderLinksContainer(DEFAULT_LINKS);
             }
         }
+
 
         // Cargar links al iniciar la Pokédex
         cargarLinksDesdeGoogleSheets();

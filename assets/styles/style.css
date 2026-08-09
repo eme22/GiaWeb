@@ -372,6 +372,55 @@ body {
     background: #ff739d;
 }
 
+/* Spinner Pokédex Retro */
+.pokedex-loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 25px 0;
+    color: #cc2960;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 9px;
+    letter-spacing: 0.5px;
+    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.8);
+}
+
+.spinner-pokeball {
+    width: 28px;
+    height: 28px;
+    background: linear-gradient(180deg, #ff4d79 45%, #3b1625 45%, #3b1625 55%, #ffffff 55%);
+    border: 2.5px solid var(--dex-border);
+    border-radius: 50%;
+    position: relative;
+    animation: spin-pokeball 0.8s linear infinite;
+    box-shadow: 0 3px 6px rgba(59, 22, 37, 0.2);
+}
+
+.spinner-pokeball::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background: #ffffff;
+    border: 1.5px solid var(--dex-border);
+    border-radius: 50%;
+}
+
+@keyframes spin-pokeball {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
 
 .link-btn {
     display: flex;
