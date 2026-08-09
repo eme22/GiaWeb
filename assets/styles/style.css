@@ -346,11 +346,12 @@ body {
     max-width: 215px;
     max-height: 255px;
     overflow-y: auto;
-    margin: 130px auto 0 auto;
-    padding-right: 3px;
+    margin: 126px auto 0 auto;
+    padding: 4px 3px 4px 0;
     position: relative;
     z-index: 3;
 }
+
 
 /* Scrollbar retro estilo Pokédex */
 .links-container::-webkit-scrollbar {
