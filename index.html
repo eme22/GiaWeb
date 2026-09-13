@@ -129,10 +129,10 @@
 
 
                 <!-- Pokémon Sprites en pantalla -->
-                <!-- Top Left: Sylveon (#700) -->
-                <img src="assets/images/silveon1.png"
-                    alt="Sylveon" class="pkmn-sprite pkmn-top-left" data-id="700"
-                    title="Sylveon - ¡Haz clic para ver datos!">
+                <!-- Top Left: Celebi Shiny (#251) - reemplaza al Sylveon de arriba -->
+                <img src="assets/images/celebi.png"
+                    alt="Celebi Shiny" class="pkmn-sprite pkmn-top-left" data-id="251"
+                    title="Celebi Shiny - ¡Haz clic para ver datos!">
 
                 <!-- Top Right: Diancie (#719) -->
                 <img src="assets/images/diance.png"
@@ -149,7 +149,33 @@
                     alt="Tapu Lele" class="pkmn-sprite pkmn-mid-right" data-id="786"
                     title="Tapu Lele - ¡Haz clic para ver datos!">
 
-                <!-- Bottom Left: Sylveon Durmiendo (#700) -->
+                <!-- Nuevos: columna izquierda (más grandes) -->
+                <img src="assets/images/cherrim.png"
+                    alt="Cherrim Forma Soleada" class="pkmn-sprite pkmn-mini pkmn-left-1" data-id="421"
+                    title="Cherrim (Forma Soleada) - ¡Haz clic para ver datos!">
+
+                <img src="assets/images/skitty.png"
+                    alt="Skitty" class="pkmn-sprite pkmn-mini pkmn-left-2" data-id="300"
+                    title="Skitty - ¡Haz clic para ver datos!">
+
+                <img src="assets/images/miltank.png"
+                    alt="Miltank" class="pkmn-sprite pkmn-mini pkmn-left-3" data-id="241"
+                    title="Miltank - ¡Haz clic para ver datos!">
+
+                <!-- Nuevos: columna derecha (más grandes) -->
+                <img src="assets/images/vivillon.png"
+                    alt="Vivillon Motivo Floral" class="pkmn-sprite pkmn-mini pkmn-right-1" data-id="666"
+                    title="Vivillon (Motivo Floral) - ¡Haz clic para ver datos!">
+
+                <img src="assets/images/corsola.png"
+                    alt="Corsola" class="pkmn-sprite pkmn-mini pkmn-right-2" data-id="222"
+                    title="Corsola - ¡Haz clic para ver datos!">
+
+                <img src="assets/images/minior.png"
+                    alt="Minior Forma Núcleo" class="pkmn-sprite pkmn-mini pkmn-right-3" data-id="10136"
+                    title="Minior (Forma Núcleo) - ¡Haz clic para ver datos!">
+
+                <!-- Bottom: Sylveon Durmiendo restaurado (#700) -->
                 <img src="assets/images/silveon2.png"
                     alt="Sylveon Animation" class="pkmn-sprite pkmn-bottom-center" data-id="700"
                     title="Sylveon - ¡Haz clic para ver datos!">
@@ -348,15 +374,23 @@
             barSpd.style.width = '0%';
 
             const localImages = {
-                '700': 'assets/images/silveon1.png',
+                '700': 'assets/images/silveon2.png',
                 '719': 'assets/images/diance.png',
                 '869': 'assets/images/alcremie.png',
-                '786': 'assets/images/tapulele.png'
+                '786': 'assets/images/tapulele.png',
+                '421': 'assets/images/cherrim.png',
+                '666': 'assets/images/vivillon.png',
+                '222': 'assets/images/corsola.png',
+                '10136': 'assets/images/minior.png',
+                '241': 'assets/images/miltank.png',
+                '300': 'assets/images/skitty.png',
+                '251': 'assets/images/celebi.png'
             };
-            modalImg.src = localImages[idOrName] || `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${idOrName}.png`;
+            modalImg.src = localImages[String(idOrName)] || `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${idOrName}.png`;
             modal.classList.add('active');
 
-            playPokemonCry(idOrName);
+            const cryIds = { '10136': '774' };
+            playPokemonCry(cryIds[String(idOrName)] || idOrName);
 
             try {
                 const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${idOrName}`);

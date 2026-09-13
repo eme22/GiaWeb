@@ -343,7 +343,7 @@ body {
     flex-direction: column;
     gap: 5px;
     width: 100%;
-    max-width: 215px;
+    max-width: 175px;
     max-height: 255px;
     overflow-y: auto;
     margin: 126px auto 0 auto;
@@ -531,13 +531,14 @@ body {
     transform: scale(1.12) translateY(-2px);
 }
 
-/* Top Left: Sylveon (#700) */
+/* Top Left: Celebi Shiny (#251) - reemplaza al Sylveon de arriba, estilo suave como Diancie */
 .pkmn-top-left {
     top: 100px;
     left: 4px;
     width: 82px;
     height: auto;
     max-height: 82px;
+    image-rendering: auto;
 }
 
 /* Top Right: Diancie (#719) */
@@ -549,25 +550,25 @@ body {
     max-height: 76px;
 }
 
-/* Mid Left: Alcremie (#869) */
+/* Mid Left: Alcremie (#869) - bajado para no chocar con Skitty */
 .pkmn-mid-left {
-    top: 305px;
+    top: 327px;
     left: 4px;
     width: 78px;
     height: auto;
     max-height: 78px;
 }
 
-/* Mid Right: Tapu Lele (#786) */
+/* Mid Right: Tapu Lele (#786) - bajado para no chocar con Corsola */
 .pkmn-mid-right {
-    top: 285px;
+    top: 327px;
     right: 4px;
     width: 74px;
     height: auto;
     max-height: 74px;
 }
 
-/* Bottom Left: Sylveon Durmiendo (#700) */
+/* Bottom Left: Sylveon Durmiendo restaurado (#700) */
 .pkmn-bottom-center {
     bottom: 8px;
     left: 4px;
@@ -582,14 +583,60 @@ body {
     transform: scale(1.1);
 }
 
-/* Entrenadora Gia sitting at bottom right */
+/* Nuevos desde downloaded: estilo suave IA como Alcremie/Diancie, sin pixelated */
+.pkmn-mini {
+    width: 72px;
+    height: auto;
+    max-height: 72px;
+    image-rendering: auto;
+    z-index: 5;
+}
+
+.pkmn-left-1 {
+    top: 178px;
+    left: 0px;
+}
+
+.pkmn-left-2 {
+    top: 254px;
+    left: 0px;
+}
+
+.pkmn-left-3 {
+    top: 410px;
+    left: 0px;
+}
+
+.pkmn-right-1 {
+    top: 178px;
+    right: 0px;
+}
+
+.pkmn-right-2 {
+    top: 254px;
+    right: 0px;
+}
+
+/* Minior: vuelve a la columna derecha para que no quede debajo de la entrenadora */
+.pkmn-right-3 {
+    top: 490px;
+    right: 145px;
+    left: auto;
+    bottom: auto;
+    width: 72px;
+    max-height: 72px;
+    z-index: 5;
+}
+
+/* Entrenadora Gia sitting at bottom right - detrás de los minis para no taparlos */
 .trainer-girl-sprite {
     position: absolute;
     bottom: -4px;
     right: -4px;
-    width: 145px;
+    width: 135px;
     height: auto;
-    max-height: 155px;
+    max-height: 145px;
+    z-index: 3;
     object-fit: contain;
     z-index: 4;
     pointer-events: auto;
