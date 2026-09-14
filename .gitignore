@@ -1,0 +1,18 @@
+# Directorio de conceptos y prototipos
+concepts/
+
+# Dependencias y artefactos de desarrollo
+node_modules/
+.next/
+.vercel/
+
+# Variables de entorno y configuración local
+.env
+.env*.local
+
+# Archivos del sistema y de editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
