@@ -33,10 +33,19 @@ GiaWeb/
 ├── LICENSE                   # Licencia MIT
 ├── assets/
 │   ├── images/               # Sprites de Pokémon, fondo y recursos gráficos
-│   └── styles/
-│       └── style.css         # Hoja de estilos CSS
+│   ├── js/
+│   │   └── main.js          # Lógica JavaScript
+│   ├── styles/
+│   │   └── style.css         # Hoja de estilos CSS
+│   └── videos/               # Video de fondo animado
 └── README.md                 # Documentación del proyecto
 ```
+
+---
+
+## 🌐 Demo en Vivo
+
+🔗 https://eme22.github.io/GiaWeb
 
 ---
 
