@@ -131,7 +131,7 @@
                 const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${apiId}`);
                 const data = await response.json();
 
-                modalName.textContent = `#${data.id} ${data.name.toUpperCase()}`;
+                modalName.textContent = `#${data.id} ${ data.id == 777 ? 'Manu' : data.name.toUpperCase() }`;
 
                 modalTypes.innerHTML = data.types.map(t =>
                     `<span class="type-badge">${t.type.name}</span>`
@@ -370,17 +370,7 @@
             if (bBtn) {
                 bBtn.addEventListener('click', () => {
                     playRetroBeep(500, 'square', 0.12);
-                    // brillitos en la ventana, excepto durante la secuencia konami
-                    const inSeq = buf && buf.length > 0 && buf[buf.length-1] !== 'b' && buf.length < 10;
-                    if (!inSeq) {
-                        for (let i=0;i<12;i++){
-                            const sp=document.createElement('span');
-                            sp.textContent='✨';
-                            sp.style.cssText='position:fixed;left:'+(Math.random()*window.innerWidth)+'px;top:'+(Math.random()*window.innerHeight)+'px;font-size:24px;pointer-events:none;z-index:9999;animation:sparkleAnim 1s forwards;';
-                            document.body.appendChild(sp);
-                            setTimeout(()=>sp.remove(),1000);
-                        }
-                    }
+                    showToast('🅱️ Botón B');
                     pushInput('b');
                 });
             }
@@ -434,17 +424,7 @@
             if (bBtn) {
                 bBtn.addEventListener('click', () => {
                     playRetroBeep(500, 'square', 0.12);
-                    // brillitos en la ventana, excepto durante la secuencia konami
-                    const inSeq = buf && buf.length > 0 && buf[buf.length-1] !== 'b' && buf.length < 10;
-                    if (!inSeq) {
-                        for (let i=0;i<12;i++){
-                            const sp=document.createElement('span');
-                            sp.textContent='✨';
-                            sp.style.cssText='position:fixed;left:'+(Math.random()*window.innerWidth)+'px;top:'+(Math.random()*window.innerHeight)+'px;font-size:24px;pointer-events:none;z-index:9999;animation:sparkleAnim 1s forwards;';
-                            document.body.appendChild(sp);
-                            setTimeout(()=>sp.remove(),1000);
-                        }
-                    }
+                    showToast('🅱️ Botón B');
                     pushInput('b');
                 });
             }
