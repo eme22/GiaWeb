@@ -198,9 +198,14 @@
         // Botón A: Despliega ficha Pokémon aleatoria de los que acompañan a Gia
         document.getElementById('bigAButton').addEventListener('click', () => {
             playRetroBeep(650, 'square', 0.12);
-            const pkmnsOnly = POKEMON_ROSTER.filter(p => !p.isTrainer);
-            const randomPkmn = pkmnsOnly[Math.floor(Math.random() * pkmnsOnly.length)];
-            fetchAndShowPokemonData(randomPkmn.id);
+            // Si estamos en secuencia konami (A antes de B), no mostrar pokemon
+            if (window.konamiBuf && window.konamiBuf.length > 0 && konamiBuf[konamiBuf.length-1] !== 'b') {
+                // solo registrar input para konami, no pokemon
+            } else {
+                const pkmnsOnly = POKEMON_ROSTER.filter(p => !p.isTrainer);
+                const randomPkmn = pkmnsOnly[Math.floor(Math.random() * pkmnsOnly.length)];
+                fetchAndShowPokemonData(randomPkmn.id);
+            }
         });
 
         // D-Pad con sonidos
@@ -327,11 +332,12 @@
         renderLinksContainer(DEFAULT_LINKS);
 
         (function () {
-            const seq = [38,38,40,40,37,39,37,39,66,65];
+            const seq = ["up","up","down","down","left","right","left","right","b","a"];
             let buf = [];
+            window.konamiBuf = buf;
             let unlocked = false;
             const ct = "FwgTNkUlOgRDFgBUQUUSdyoGEzQMFjxFLhMLAQ==";
-            const k = (navigator.userAgent + (location.host || '') + navigator.language).slice(0, 24) || 'fallback-key';
+            const k = 'GiaWebSecret2026';
             function dec(s) {
                 const raw = atob(s);
                 const out = [];
@@ -341,20 +347,43 @@
                 return out.join('');
             }
             function openSecret() {
-                if (unlocked) return;
-                unlocked = true;
                 const m = document.getElementById('secretModal');
                 document.getElementById('secretMsg').textContent = dec(ct);
                 m.classList.add('active');
                 playRetroBeep(880, 'sine', 0.3);
             }
-            document.addEventListener('keydown', (e) => {
-                buf.push(e.keyCode);
+            function pushInput(val) {
+                buf.push(val);
                 if (buf.length > seq.length) buf.shift();
                 if (buf.length === seq.length && buf.every((v, i) => v === seq[i])) {
                     openSecret();
                 }
+            }
+            document.querySelectorAll('.dpad-btn').forEach(btn => {
+                btn.addEventListener('click', () => pushInput(btn.dataset.dir));
             });
+            document.getElementById('bigAButton').addEventListener('click', () => {
+                playRetroBeep(650, 'square', 0.12);
+                pushInput('a');
+            });
+            const bBtn = document.getElementById('bigBButton');
+            if (bBtn) {
+                bBtn.addEventListener('click', () => {
+                    playRetroBeep(500, 'square', 0.12);
+                    // brillitos en la ventana, excepto durante la secuencia konami
+                    const inSeq = buf && buf.length > 0 && buf[buf.length-1] !== 'b' && buf.length < 10;
+                    if (!inSeq) {
+                        for (let i=0;i<12;i++){
+                            const sp=document.createElement('span');
+                            sp.textContent='✨';
+                            sp.style.cssText='position:fixed;left:'+(Math.random()*window.innerWidth)+'px;top:'+(Math.random()*window.innerHeight)+'px;font-size:24px;pointer-events:none;z-index:9999;animation:sparkleAnim 1s forwards;';
+                            document.body.appendChild(sp);
+                            setTimeout(()=>sp.remove(),1000);
+                        }
+                    }
+                    pushInput('b');
+                });
+            }
             document.getElementById('closeSecretModal').addEventListener('click', () => {
                 document.getElementById('secretModal').classList.remove('active');
             });
@@ -367,11 +396,12 @@
 
         // Panel secreto
         (function () {
-            const seq = [38,38,40,40,37,39,37,39,66,65];
+            const seq = ["up","up","down","down","left","right","left","right","b","a"];
             let buf = [];
+            window.konamiBuf = buf;
             let unlocked = false;
             const ct = "FwgTNkUlOgRDFgBUQUUSdyoGEzQMFjxFLhMLAQ==";
-            const k = (navigator.userAgent + (location.host || '') + navigator.language).slice(0, 24) || 'fallback-key';
+            const k = 'GiaWebSecret2026';
             function dec(s) {
                 const raw = atob(s);
                 const out = [];
@@ -381,20 +411,43 @@
                 return out.join('');
             }
             function openSecret() {
-                if (unlocked) return;
-                unlocked = true;
                 const m = document.getElementById('secretModal');
                 document.getElementById('secretMsg').textContent = dec(ct);
                 m.classList.add('active');
                 playRetroBeep(880, 'sine', 0.3);
             }
-            document.addEventListener('keydown', (e) => {
-                buf.push(e.keyCode);
+            function pushInput(val) {
+                buf.push(val);
                 if (buf.length > seq.length) buf.shift();
                 if (buf.length === seq.length && buf.every((v, i) => v === seq[i])) {
                     openSecret();
                 }
+            }
+            document.querySelectorAll('.dpad-btn').forEach(btn => {
+                btn.addEventListener('click', () => pushInput(btn.dataset.dir));
             });
+            document.getElementById('bigAButton').addEventListener('click', () => {
+                playRetroBeep(650, 'square', 0.12);
+                pushInput('a');
+            });
+            const bBtn = document.getElementById('bigBButton');
+            if (bBtn) {
+                bBtn.addEventListener('click', () => {
+                    playRetroBeep(500, 'square', 0.12);
+                    // brillitos en la ventana, excepto durante la secuencia konami
+                    const inSeq = buf && buf.length > 0 && buf[buf.length-1] !== 'b' && buf.length < 10;
+                    if (!inSeq) {
+                        for (let i=0;i<12;i++){
+                            const sp=document.createElement('span');
+                            sp.textContent='✨';
+                            sp.style.cssText='position:fixed;left:'+(Math.random()*window.innerWidth)+'px;top:'+(Math.random()*window.innerHeight)+'px;font-size:24px;pointer-events:none;z-index:9999;animation:sparkleAnim 1s forwards;';
+                            document.body.appendChild(sp);
+                            setTimeout(()=>sp.remove(),1000);
+                        }
+                    }
+                    pushInput('b');
+                });
+            }
             document.getElementById('closeSecretModal').addEventListener('click', () => {
                 document.getElementById('secretModal').classList.remove('active');
             });
